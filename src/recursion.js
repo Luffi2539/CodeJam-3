@@ -1,16 +1,24 @@
+
+let queue = [];
+queue.push(tree);
+let result = [];
+
 function recursion(tree){
-  let result = [];
-  for (let prop in tree) {
-  if (prop === 'value'){
-    result.push(tree[prop]);
+    if (queue.length===0){
+        return result
     }
-  if (prop === 'left'){
-    result.push(recursion(tree.left));
-    } 
-  if (prop === 'right'){
-    result.push(recursion(tree.right));
-    } 
-  
-  }
-  return result;
-  }
+
+    let temp = queue.shift();
+    result.push(temp.value);
+    if(temp.left){
+        queue.push(temp.left);
+    }
+    if(temp.right){
+        queue.push(temp.right);
+    }
+    recursion(queue[0]);
+    
+return result
+}
+
+    
